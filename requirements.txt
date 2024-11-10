@@ -1,0 +1,2 @@
+# requirements.txt
+# Jeśli używasz tylko unittest, plik może być pusty
