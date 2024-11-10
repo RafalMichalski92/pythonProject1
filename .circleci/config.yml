@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.11  # Wersja Pythona, jakiej używasz
+    steps:
+      - checkout  # Pobiera kod źródłowy
+
+      - run:
+          name: Set up virtual environment
+          command: python -m venv venv
+
+      - run:
+          name: Install dependencies
+          command: |
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            python -m unittest discover -s . -p "test*.py"
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
